@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import useDocumentTitle from './useDocumentTitle';
 
 function Counter(props) {
     const array = useState(0); //useState returns an array of two elements
@@ -9,6 +10,21 @@ function Counter(props) {
     const [count2, setCount2] = useState(0); //so line 4,5,6 is equivalent to line 9
 
     const [user, setUser] = useState('');
+
+    //in useEffect the first param is a function where we perform certain actions
+    //the second param (dependency array) is optional which is used to declare on which values this effect is dependent. If that values are changed then this effect is executed.
+    // we can also return a function from this effect where we will write the "clean up" code like we used to write in "componentWillUnmount" function.
+    
+    // useEffect (() => {
+    //     document.title = `${user} clicked ${count} times`;
+
+    //     return () => {
+    //         //cleanup code
+    //     }
+    // }, [count]);
+
+    //by using custom hooks
+    useDocumentTitle(`${user} clicked ${count} times`);
 
 
     return (
