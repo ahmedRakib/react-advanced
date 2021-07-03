@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserContext from './userContext';
+import MovieRow from './MovieRow';
 
 class MovieList extends Component {
     //static contextType = UserContext; // contextType is a static property of MovieList class. this line is executed while creating the class. not after like below
@@ -12,7 +13,7 @@ class MovieList extends Component {
         return (
             <UserContext.Consumer>
             {
-                value =>  <div>Movie List {value.name} </div>
+                value =>  <div>Movie List {value.name} <MovieRow /> </div>
             }   
             </UserContext.Consumer>
             
