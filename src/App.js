@@ -16,15 +16,24 @@
 //implement with class component
 import React, { Component } from 'react';
 import MoviePage from './context/MoviePage';
+import Login from './context/Login';
 import UserContext from './context/userContext';
 
 class App extends Component {
-  state = { currentUser :  { name : "Rakib" } }
+  state = { currentUser : null }
+
+  handleLogin = (userName) => {
+    console.log("Getting the username" , userName);
+    const user = { name : 'Rakib' };
+
+    this.setState({ currentUser : user });
+  }
   render() {
     return (
-      <UserContext.Provider value={this.state.currentUser}>
+      <UserContext.Provider value= { { currentUser : this.state.currentUser, onLogin : this.handleLogin } } >
         <div>
           <MoviePage />
+          <Login />
         </div>
       </UserContext.Provider>
       
