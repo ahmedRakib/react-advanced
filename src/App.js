@@ -18,9 +18,10 @@ import React, { Component } from 'react';
 import MoviePage from './context/MoviePage';
 import Login from './context/Login';
 import UserContext from './context/userContext';
+import CartContext from './context/cartContext';
 
 class App extends Component {
-  state = { currentUser : null }
+  state = { currentUser : null, cart : [{id : 1, name : "Adidas"}] }
 
   handleLogin = (userName) => {
     console.log("Getting the username" , userName);
@@ -30,13 +31,14 @@ class App extends Component {
   }
   render() {
     return (
-      <UserContext.Provider value= { { currentUser : this.state.currentUser, onLogin : this.handleLogin } } >
-        <div>
-          <MoviePage />
-          <Login />
-        </div>
-      </UserContext.Provider>
-      
+      <CartContext.Provider value={ this.state.cart }>
+        <UserContext.Provider value= { { currentUser : this.state.currentUser, onLogin : this.handleLogin } } >
+          <div>
+            <MoviePage />
+            <Login />
+          </div>
+        </UserContext.Provider>
+      </CartContext.Provider>  
     );
   }
 }
